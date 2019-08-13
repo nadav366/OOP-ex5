@@ -1,0 +1,80 @@
+nadav366
+
+itay.tayar guyk12123 yair.shemer
+
+=============================
+=      File description     =
+=============================
+filesprocessing:
+    - DirectoryProcessor.java - Main file. Runs the software activity.
+    - Section.java - An object is a Section in the command file.
+    - SortGenerator.java - Aמ object is a generator that generates the Sorter obj.
+    - Sorter.java - An object that sorts a list of files according to an object that determines its order.
+    - TypeOneException.java - Exception of the first type.
+    - TypeTwoException.java - Exception of the second type.
+
+    filesprocessing.filters:
+        - AllFilter.java - Filter obj: All files.
+        - BetweenFilter.java - Filter obj: Files are sized between two borders.
+        - ContainsFilter.java - Filter obj: Files whose name contains a particular string.
+        - DecoratorNotFilter.java - Filter obj: Decorator that returns exactly the opposite of a particular filter.
+        - ExecutableFilter.java - Filter obj: Files that are Executable
+        - FileFilter.java - Filter obj: Files whose name is a particular string.
+        - FiltersGenerator.java - An object is a generator that generates the correct filter.
+        - GreaterThanFilter.java - Filter obj: Files are sized Larger than a certain size.
+        - HiddenFilter.java - Filter obj: Files that are Hidden.
+        - MyFilter.java - interface that unifies all filters.
+        - PrefixFilter.java - Filter obj: Files whose name is Starts with a particular string
+        - SmallerThanFilter.java - Filter obj: Files are sized small than a certain size.
+        - SuffixFilter.java - Filter obj: Files whose name is finished with a particular string
+        - WritableFilter.java - Filter obj:  Files that are Writable.
+
+    filesprocessing.order:
+        - AbsOrder.java - An object that returns order between two organs by their name
+        - Order.java - interface that is the basis for an object that determines the order of files.
+        - ReverseDecorator.java - An object that envelops an object of order, and turns its answers
+        - SizeOrder.java - An object that returns order between two organs according to their size
+        - TypeOrder.java- An object that returns order between two organs according to their type
+
+
+=============================
+=          Design           =
+=============================
+- At the beginning of programming, I designed the software structure and decided to do so -
+  I will write an interface for the filters and for the corresponding objects.
+  I will write both of them according to the different types and create a generator that gives
+  access to each, according to the various parameters received.
+  In addition, I will create a section object, which saves the information for one section,
+  and also knows to run it and print respectively.
+  The main function will create a list of all sections, to identify already start two type errors.
+  And then activate the sections in order.
+
+- I fixed the files so that I have two sub-package.
+  One-filters to centralize all filters and second-order to all different equations.
+
+- To handle the Not and Reverse commands, I created Decorator objects that accept the
+  original object and return exactly the opposite of the result.
+
+- I tried to keep the Single-Choice Principle in the filter and sorting options in a single
+  location in the software, and it is easy to change, add or remove.
+
+=============================
+=  Implementation details   =
+=============================
+- I have produced two types of Exception objects, for each type.
+  The objects save the information related to the problem (line number or type of fault),
+  so that each stage can be "caught" exactly the right type.
+
+- For the second type exception, I created several internal classes to separate the different
+  subtypes of the exception.
+  The advantage of this is that the error messages are concentrated in the Exception object and
+  there is a specific type, inherited from TypeTwoException.
+
+- Before sorting, the files are held in the ArrayList to facilitate the insertion into the array.
+  Sorting is based on "quick sorting" to work on average on O (n log (n))
+
+- In both the generators and the objects I used the implementation of singltone because there is no
+  need to create more than one object, which receives data (files or instructions)
+  and knows what to return.
+
+
